@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sugestão de Treinamento — Instituto Addvalora Brasil</title>
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --addvalora-orange: #E98300;
+      --addvalora-orange-dark: #C97000;
+      --addvalora-orange-light: #FCF2E5;
+      --addvalora-blue: #0E3C5F;
+      --addvalora-blue-dark: #0a2d47;
+      --addvalora-blue-light: #E8F4FF;
+      --nie-blue: #0E3C5F;
+      --text-dark: #1f2937;
+      --text-gray: #4b5563;
+      --card-border: #e5e7eb;
+      --gray-light: #E5E5E5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .document-page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 860px;
+      min-height: 100vh;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Header */
+    .doc-header {
+      background-color: var(--addvalora-blue);
+      padding: 2.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 40%;
+      background: linear-gradient(135deg, transparent 0%, rgba(233,131,0,0.15) 100%);
+      pointer-events: none;
+    }
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--addvalora-orange) 0%, var(--addvalora-orange-dark) 100%);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+    .logo-area img {
+      height: 80px;
+      width: auto;
+      display: block;
+    }
+    .back-btn {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .doc-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .doc-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    /* Body */
+    .doc-body {
+      padding: 3rem 3.5rem;
+      flex: 1;
+    }
+    .form-container {
+      background: white;
+      border-radius: 12px;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--addvalora-blue);
+      margin-bottom: 0.5rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--addvalora-orange);
+      box-shadow: 0 0 0 3px var(--addvalora-orange-light);
+    }
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background: var(--addvalora-orange);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .btn-submit:hover {
+      background: var(--addvalora-orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233,131,0,0.3);
+    }
+    .btn-submit svg {
+      width: 20px;
+      height: 20px;
+    }
+    .btn-submit:disabled {
+      background: var(--text-gray);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .form-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    .form-message.success {
+      display: block;
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #10b981;
+    }
+    .form-message.error {
+      display: block;
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #ef4444;
+    }
+    /* NIE Branding */
+    .nie-branding {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+    .nie-logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nie-logo-icon {
+      width: 80px;
+      height: 80px;
+      color: var(--addvalora-blue);
+    }
+    .nie-text {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--addvalora-blue);
+      letter-spacing: 0.1em;
+      margin-bottom: -5px;
+    }
+    .nie-subtext {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .nie-declaration {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      font-weight: 500;
+      background: var(--addvalora-blue-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      color: var(--addvalora-blue);
+    }
+    /* Footer */
+    .doc-footer {
+      padding: 1.5rem 3.5rem;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+    @media (max-width: 600px) {
+      .doc-body { padding: 2rem 1.5rem; }
+      .doc-header { padding: 2rem 1.5rem; }
+      .doc-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="document-page">
+    <!-- Header -->
+    <header class="doc-header">
+      <div class="header-top">
+        <div class="logo-area">
+          <img src="addvalora_instituto.png" alt="Addvalora Instituto Logo">
+        </div>
+        <a href="index.html" class="back-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Voltar ao início
+        </a>
+      </div>
+      <h1 class="doc-title">Sugestão de Treinamento</h1>
+      <div class="doc-subtitle">Instituto Addvalora Brasil · Sua ideia é fundamental</div>
+    </header>
+
+    <!-- Body -->
+    <main class="doc-body">
+      <div class="form-container">
+        <form id="trainingForm">
+          <!-- Web3Forms Config -->
+          <input type="hidden" name="access_key" value="6afc9181-c0df-4a2f-aef0-56eb4d152d3f">
+          <input type="hidden" name="subject" value="Nova Sugestão de Treinamento - NIE">
+          <input type="hidden" name="from_name" value="Portal NIE - Treinamentos">
+          
+          <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="area">Área / Unidade de Atuação</label>
+            <input type="text" id="area" name="area" class="form-control" placeholder="Ex: Sinistros, Administrativo, etc." required>
+          </div>
+
+          <div class="form-group">
+            <label for="tema">Tema do Treinamento Sugerido</label>
+            <input type="text" id="tema" name="tema" class="form-control" placeholder="Qual o assunto principal?" required>
+          </div>
+
+          <div class="form-group">
+            <label for="descricao">Breve Descrição da Sugestão</label>
+            <textarea id="descricao" name="descricao" class="form-control" placeholder="Explique um pouco mais sobre sua ideia..." required></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn-submit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            <span id="btnText">Enviar Sugestão</span>
+          </button>
+          
+          <div id="formMessage" class="form-message"></div>
+        </form>
+      </div>
+
+      <!-- NIE Branding Section -->
+      <div class="nie-branding">
+        <div class="nie-logo-container">
+          <div class="nie-text" style="margin-top: 10px;">NIE</div>
+          <div class="nie-subtext">NÚCLEO DE INTELIGÊNCIA ESTRATÉGICA</div>
+        </div>
+        <div class="nie-declaration">
+          Desenvolvido exclusivamente pelo NIE
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-gray); max-width: 400px; margin-top: 0.5rem;">
+          Este canal de sugestões foi created e é gerenciado pelo Núcleo de Inteligência Estratégica para fomentar a inovação e o conhecimento no Instituto.
+        </p>
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div>© 2026 Instituto Addvalora Brasil · Programa de Treinamento · NIE</div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('trainingForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const formMessage = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Feedback visual de carregamento
+      submitBtn.disabled = true;
+      btnText.innerText = 'Enviando...';
+      formMessage.style.display = 'none';
+      formMessage.className = 'form-message';
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: json
+      })
+      .then(async (response) => {
+          let res = await response.json();
+          if (response.status == 200) {
+              formMessage.innerText = 'Sugestão enviada com sucesso! Obrigado pela sua contribuição.';
+              formMessage.classList.add('success');
+              form.reset();
+          } else {
+              console.log(response);
+              formMessage.innerText = res.message || 'Ocorreu um erro ao enviar. Tente novamente.';
+              formMessage.classList.add('error');
+          }
+      })
+      .catch(error => {
+          console.log(error);
+          formMessage.innerText = 'Erro de conexão. Verifique sua internet.';
+          formMessage.classList.add('error');
+      })
+      .then(function() {
+          submitBtn.disabled = false;
+          btnText.innerText = 'Enviar Sugestão';
+      });
+    });
+  </script>
+</body>
+</html>

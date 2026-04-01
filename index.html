@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instituto Addvalora Brasil — Programa de Treinamento</title>
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --addvalora-orange: #E98300;
+      --addvalora-orange-dark: #C97000;
+      --addvalora-orange-light: #FCF2E5;
+      --addvalora-blue: #0E3C5F;
+      --addvalora-blue-dark: #0a2d47;
+      --addvalora-blue-light: #E8F4FF;
+      --text-dark: #1f2937;
+      --text-gray: #4b5563;
+      --card-border: #e5e7eb;
+      --gray-light: #E5E5E5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .document-page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 860px;
+      min-height: 100vh;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Header */
+    .doc-header {
+      background-color: var(--addvalora-blue);
+      padding: 2.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 40%;
+      background: linear-gradient(135deg, transparent 0%, rgba(233,131,0,0.15) 100%);
+      pointer-events: none;
+    }
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--addvalora-orange) 0%, var(--addvalora-orange-dark) 100%);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+    .logo-area img {
+      height: 100px;
+      width: auto;
+      display: block;
+    }
+    .lang-toggles {
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.1);
+      padding: 4px;
+      border-radius: 8px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .lang-btn:hover { color: white; background: rgba(255,255,255,0.15); }
+    .lang-btn.active { background: var(--addvalora-orange); color: white; box-shadow: 0 2px 8px rgba(233,131,0,0.4); }
+    .doc-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .doc-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    /* Orange accent bar */
+    .orange-accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--addvalora-orange), var(--addvalora-orange-dark));
+    }
+    /* Body */
+    .doc-body {
+      padding: 3rem 3.5rem;
+      flex: 1;
+    }
+    .section-intro {
+      margin-bottom: 2.5rem;
+    }
+    .section-intro h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--addvalora-blue);
+      margin-bottom: 0.6rem;
+    }
+    .section-intro p {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      line-height: 1.65;
+    }
+    /* Areas Grid */
+    .areas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .areas-grid { grid-template-columns: 1fr; }
+      .doc-body { padding: 2rem 1.5rem; }
+      .doc-header { padding: 2rem 1.5rem; }
+      .doc-title { font-size: 1.5rem; }
+    }
+    /* Area Card */
+    .area-card {
+      background: white;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.8rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid var(--addvalora-orange);
+    }
+    .area-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(233,131,0,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .area-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(14,60,95,0.12);
+      border-color: var(--addvalora-orange);
+      text-decoration: none;
+    }
+    .area-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--addvalora-orange-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .area-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--addvalora-blue);
+      line-height: 1.3;
+    }
+    .area-desc {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+    .area-arrow {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--addvalora-orange);
+    }
+    .area-arrow svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s;
+    }
+    .area-card:hover .area-arrow svg {
+      transform: translateX(4px);
+    }
+    /* Coming Soon card */
+    .area-card.coming-soon {
+      opacity: 0.6;
+      cursor: default;
+      border-top-color: var(--gray-light);
+      pointer-events: none;
+    }
+    .area-card.coming-soon .area-icon {
+      background: #f3f4f6;
+    }
+    .area-card.coming-soon .area-name { color: var(--text-gray); }
+    .badge-soon {
+      display: inline-block;
+      background: #e5e7eb;
+      color: #6b7280;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    /* Footer */
+    .doc-footer {
+      padding: 1.5rem 3.5rem;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+    /* Lang toggle logic */
+    /* lang-es inicialmente oculto via JS no DOMContentLoaded */
+  </style>
+</head>
+<body>
+  <div class="document-page">
+    <!-- Header -->
+    <header class="doc-header">
+      <div class="header-top">
+        <div class="logo-area">
+          <img src="addvalora_instituto.png" alt="Addvalora Instituto Logo">
+        </div>
+        <div class="lang-toggles">
+          <button class="lang-btn active" onclick="setLanguage('pt')" id="btn-pt">Português</button>
+          <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">Español</button>
+        </div>
+      </div>
+      <div class="lang-pt">
+        <h1 class="doc-title">Programa de Treinamento</h1>
+        <div class="doc-subtitle">Instituto Addvalora Brasil · Selecione uma área</div>
+      </div>
+      <div class="lang-es">
+        <h1 class="doc-title">Programa de Entrenamiento</h1>
+        <div class="doc-subtitle">Instituto Addvalora Brasil · Seleccione un área</div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <main class="doc-body">
+      <section class="section-intro">
+        <div class="lang-pt">
+          <h2>Bem-vindo ao Instituto Addvalora Brasil</h2>
+          <p>Selecione abaixo a área de treinamento desejada para acessar os módulos, materiais de apresentação e vídeos das palestras.</p>
+        </div>
+        <div class="lang-es">
+          <h2>Bienvenido al Instituto Addvalora Brasil</h2>
+          <p>Seleccione a continuación el área de entrenamiento deseada para acceder a los módulos, materiales de presentación y videos de las charlas.</p>
+        </div>
+      </section>
+
+      <div class="areas-grid">
+
+        <!-- Property -->
+        <a class="area-card" href="property.html">
+          <div class="area-icon">🏢</div>
+          <div class="area-name lang-pt">Property</div>
+          <div class="area-name lang-es">Property</div>
+          <div class="area-desc lang-pt">Vistoria, relatórios, cálculos de indenização, riscos operacionais e incêndio.</div>
+          <div class="area-desc lang-es">Inspección, informes, cálculos de indemnización, riesgos operacionales e incendio.</div>
+          <div class="area-arrow">
+            <span class="lang-pt">Acessar módulos</span>
+            <span class="lang-es">Acceder módulos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Marine -->
+        <a class="area-card" href="marine.html">
+          <div class="area-icon">⚓</div>
+          <div class="area-name">Marine</div>
+          <div class="area-desc lang-pt">Seguro de transporte, casco marítimo, P&amp;I e mercadorias.</div>
+          <div class="area-desc lang-es">Seguro de transporte, casco marítimo, P&amp;I y mercancías.</div>
+          <div class="area-arrow">
+            <span class="lang-pt">Acessar módulos</span>
+            <span class="lang-es">Acceder módulos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- RC Geral -->
+        <a class="area-card" href="rc-geral.html">
+          <div class="area-icon">⚖️</div>
+          <div class="area-name lang-pt">RC Geral</div>
+          <div class="area-name lang-es">RC General</div>
+          <div class="area-desc lang-pt">Responsabilidade Civil Geral, produtos e apólices, histórico e perspectivas.</div>
+          <div class="area-desc lang-es">Responsabilidad Civil General, productos y pólizas, historial y perspectivas.</div>
+          <div class="area-arrow">
+            <span class="lang-pt">Acessar módulos</span>
+            <span class="lang-es">Acceder módulos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- RC Profissional -->
+        <a class="area-card" href="rc-profissional.html">
+          <div class="area-icon">👔</div>
+          <div class="area-name lang-pt">RC Profissional</div>
+          <div class="area-name lang-es">RC Profesional</div>
+          <div class="area-desc lang-pt">Erros e omissões, D&amp;O, responsabilidade de profissionais liberais.</div>
+          <div class="area-desc lang-es">Errores y omisiones, D&amp;O, responsabilidad de profesionales liberales.</div>
+          <div class="area-arrow">
+            <span class="lang-pt">Acessar módulos</span>
+            <span class="lang-es">Acceder módulos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Garantia e Fiança Locatícia -->
+        <a class="area-card" href="garantia.html">
+          <div class="area-icon">🔐</div>
+          <div class="area-name lang-pt">Garantia e Fiança Locatícia</div>
+          <div class="area-name lang-es">Garantía y Fianza Locativa</div>
+          <div class="area-desc lang-pt">Seguro fiança, garantia locatícia, inadimplência e danos ao imóvel.</div>
+          <div class="area-desc lang-es">Seguro fianza, garantía locativa, incumplimiento y daños al inmueble.</div>
+          <div class="area-arrow">
+            <span class="lang-pt">Acessar módulos</span>
+            <span class="lang-es">Acceder módulos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Sugestão de Treinamento - NIE -->
+        <a class="area-card" href="sugestao-treinamento.html" style="border-top-color: var(--addvalora-blue); background: var(--addvalora-blue-light);">
+          <div class="area-icon" style="background: white; border: 1px solid var(--addvalora-blue);">💡</div>
+          <div class="area-name lang-pt">Sugestão de Treinamento</div>
+          <div class="area-name lang-es">Sugerencia de Entrenamiento</div>
+          <div class="area-desc lang-pt">Tem uma ideia de treinamento? Envie para o NIE e contribua com nosso crescimento.</div>
+          <div class="area-desc lang-es">¿Tienes una idea de entrenamiento? Envíala al NIE y contribuye con nuestro crecimiento.</div>
+          <div class="area-arrow" style="color: var(--addvalora-blue);">
+            <span class="lang-pt">Enviar sugestão</span>
+            <span class="lang-es">Enviar sugerencia</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div style="position: absolute; top: 10px; right: 10px; font-size: 0.65rem; font-weight: 800; color: var(--addvalora-blue); opacity: 0.6;">NIE</div>
+        </a>
+
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div class="lang-pt">© 2026 Instituto Addvalora Brasil · Programa de Treinamento · Desenvolvido pelo NIE</div>
+      <div class="lang-es">© 2026 Instituto Addvalora Brasil · Programa de Entrenamiento · Desarrollado por el NIE</div>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('.lang-pt').forEach(el => el.style.display = lang === 'pt' ? '' : 'none');
+      document.querySelectorAll('.lang-es').forEach(el => {
+        if (lang === 'es') { el.style.removeProperty('display'); } else { el.style.display = 'none'; }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => setLanguage('pt'));
+  </script>
+</body>
+</html>

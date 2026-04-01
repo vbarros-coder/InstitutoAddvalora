@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garantia e Fiança Locatícia — Instituto Addvalora Brasil</title>
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --addvalora-orange: #E98300;
+      --addvalora-orange-dark: #C97000;
+      --addvalora-orange-light: #FCF2E5;
+      --addvalora-blue: #0E3C5F;
+      --text-dark: #1f2937;
+      --text-gray: #4b5563;
+      --card-border: #e5e7eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .document-page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 860px;
+      min-height: 100vh;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+    }
+    .doc-header {
+      background-color: var(--addvalora-blue);
+      padding: 2.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; width: 40%;
+      background: linear-gradient(135deg, transparent 0%, rgba(233,131,0,0.15) 100%);
+      pointer-events: none;
+    }
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--addvalora-orange), var(--addvalora-orange-dark));
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn {
+      background: rgba(255,255,255,0.15); border: none; color: white;
+      padding: 7px 12px; border-radius: 6px; cursor: pointer;
+      font-size: 0.82rem; font-weight: 600; font-family: 'Inter', sans-serif;
+      display: flex; align-items: center; gap: 0.4rem;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.25); color: white; text-decoration: none; }
+    .back-btn svg { width: 14px; height: 14px; }
+    .logo-area img {
+      height: 100px; width: auto; display: block;
+    }
+    .lang-toggles { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.1); padding: 4px; border-radius: 8px; }
+    .lang-btn {
+      background: transparent; border: none; color: rgba(255,255,255,0.7);
+      padding: 6px 14px; font-size: 0.82rem; cursor: pointer; border-radius: 5px;
+      font-weight: 600; letter-spacing: 0.03em; transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .lang-btn:hover { color: white; background: rgba(255,255,255,0.15); }
+    .lang-btn.active { background: var(--addvalora-orange); color: white; box-shadow: 0 2px 8px rgba(233,131,0,0.4); }
+    .area-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(233,131,0,0.2); color: #FFB347;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 4px 10px; border-radius: 4px; margin-bottom: 0.6rem;
+    }
+    .doc-title { font-size: 2rem; font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.4rem; }
+    .doc-subtitle { font-size: 0.88rem; color: rgba(255,255,255,0.65); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+    .doc-body { padding: 3rem 3.5rem; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .empty-state { text-align: center; padding: 4rem 2rem; }
+    .empty-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block; }
+    .empty-title { font-size: 1.4rem; font-weight: 700; color: var(--addvalora-blue); margin-bottom: 0.8rem; }
+    .empty-desc { font-size: 0.95rem; color: var(--text-gray); line-height: 1.65; max-width: 400px; margin: 0 auto 2rem; }
+    .badge-coming {
+      display: inline-block; background: var(--addvalora-orange-light);
+      color: var(--addvalora-orange-dark); font-size: 0.8rem;
+      font-weight: 700; text-transform: uppercase; padding: 6px 16px;
+      border-radius: 20px; letter-spacing: 0.05em;
+    }
+    .doc-footer {
+      padding: 1.5rem 3.5rem; border-top: 1px solid #e5e7eb;
+      background: #f9fafb; text-align: center; font-size: 0.78rem; color: #9ca3af;
+    }
+    /* lang-es inicialmente oculto via JS no DOMContentLoaded */
+    @media (max-width: 600px) {
+      .doc-body { padding: 2rem 1.5rem; }
+      .doc-header { padding: 2rem 1.5rem; }
+      .doc-title { font-size: 1.5rem; }
+    }
+</style>
+</head>
+<body>
+  <div class="document-page">
+    <header class="doc-header">
+      <div class="header-top">
+        <div class="header-left">
+          <a class="back-btn" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span class="lang-pt">Voltar</span>
+            <span class="lang-es" style="display:none">Volver</span>
+          </a>
+          <div class="logo-area">
+            <img src="addvalora_instituto.png" alt="Addvalora Instituto Logo">
+          </div>
+        </div>
+        <div class="lang-toggles">
+          <button class="lang-btn active" onclick="setLanguage('pt')" id="btn-pt">Português</button>
+          <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">Español</button>
+        </div>
+      </div>
+      <div class="area-badge">🔐 Área</div>
+      <div class="lang-pt">
+        <h1 class="doc-title">Garantia e Fiança Locatícia</h1>
+        <div class="doc-subtitle">Programa de Treinamento · Instituto Addvalora Brasil</div>
+      </div>
+      <div class="lang-es">
+        <h1 class="doc-title">Garantía y Fianza Locativa</h1>
+        <div class="doc-subtitle">Programa de Entrenamiento · Instituto Addvalora Brasil</div>
+      </div>
+    </header>
+
+    <main class="doc-body">
+      <div class="empty-state">
+        <span class="empty-icon">🔐</span>
+        <div class="lang-pt">
+          <h2 class="empty-title">Módulos em Desenvolvimento</h2>
+          <p class="empty-desc">Os módulos de treinamento de Garantia e Fiança Locatícia estão sendo desenvolvidos. Em breve você poderá acessar conteúdos sobre seguro fiança, inadimplência e danos ao imóvel.</p>
+        </div>
+        <div class="lang-es">
+          <h2 class="empty-title">Módulos en Desarrollo</h2>
+          <p class="empty-desc">Los módulos de entrenamiento de Garantía y Fianza Locativa están siendo desarrollados. Pronto podrá acceder a contenidos sobre seguro fianza, incumplimiento y daños al inmueble.</p>
+        </div>
+        <span class="badge-coming lang-pt">Em breve</span>
+        <span class="badge-coming lang-es" style="display:none">Próximamente</span>
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div class="lang-pt">© 2026 Instituto Addvalora Brasil · Garantia e Fiança Locatícia · Desenvolvido pelo NIE</div>
+      <div class="lang-es">© 2026 Instituto Addvalora Brasil · Garantía y Fianza Locativa · Desarrollado por el NIE</div>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('.lang-pt').forEach(el => el.style.display = lang === 'pt' ? '' : 'none');
+      document.querySelectorAll('.lang-es').forEach(el => {
+        if (lang === 'es') { el.style.removeProperty('display'); } else { el.style.display = 'none'; }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => setLanguage('pt'));
+  </script>
+</body>
+</html>

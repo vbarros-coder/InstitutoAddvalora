@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property e Riscos Nomeados — Instituto Addvalora Brasil</title>
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --addvalora-orange: #E98300;
+      --addvalora-orange-dark: #C97000;
+      --addvalora-orange-light: #FCF2E5;
+      --addvalora-blue: #0E3C5F;
+      --text-dark: #1f2937;
+      --text-gray: #4b5563;
+      --card-border: #e5e7eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .document-page {
+      background: #fff;
+      width: 100%;
+      max-width: 900px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+    }
+    /* ── HEADER ─────────────────────────────── */
+    .doc-header {
+      background-color: var(--addvalora-blue);
+      padding: 2.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; width: 40%;
+      background: linear-gradient(135deg, transparent, rgba(233,131,0,.15));
+      pointer-events: none;
+    }
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--addvalora-orange), var(--addvalora-orange-dark));
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn {
+      display: flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      padding: 7px 12px; border-radius: 6px; cursor: pointer;
+      font: 600 .82rem 'Inter', sans-serif;
+      text-decoration: none; transition: background .2s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,.28); color: #fff; text-decoration: none; }
+    .back-btn svg { width: 14px; height: 14px; }
+    .logo-area img {
+      height: 100px; width: auto;
+    }
+    .lang-toggles {
+      display: flex; gap: .4rem;
+      background: rgba(255,255,255,.1); padding: 4px; border-radius: 8px;
+    }
+    .lang-btn {
+      background: transparent; border: none; color: rgba(255,255,255,.7);
+      padding: 6px 14px; font: 600 .82rem 'Inter', sans-serif;
+      cursor: pointer; border-radius: 5px; letter-spacing: .03em; transition: all .2s;
+    }
+    .lang-btn:hover { color: #fff; background: rgba(255,255,255,.15); }
+    .lang-btn.active { background: var(--addvalora-orange); color: #fff; box-shadow: 0 2px 8px rgba(233,131,0,.4); }
+    .area-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(233,131,0,.2); color: #FFB347;
+      font: 700 .75rem 'Inter', sans-serif; text-transform: uppercase;
+      letter-spacing: .08em; padding: 4px 10px; border-radius: 4px; margin-bottom: .5rem;
+    }
+    .doc-title { font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: -.02em; margin-bottom: .3rem; }
+    .doc-subtitle { font-size: .88rem; color: rgba(255,255,255,.65); letter-spacing: .08em; text-transform: uppercase; }
+    /* ── BODY ───────────────────────────────── */
+    .doc-body { padding: 3rem 3.5rem; flex: 1; }
+    .intro-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .intro-section h2 { font-size: 1.3rem; font-weight: 700; color: var(--addvalora-blue); margin-bottom: .5rem; }
+    .intro-text { font-size: .93rem; color: var(--text-gray); line-height: 1.65; }
+    /* ── GRID ───────────────────────────────── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 620px) {
+      .modules-grid { grid-template-columns: 1fr; }
+      .doc-body { padding: 2rem 1.5rem; }
+      .doc-header { padding: 2rem 1.5rem; }
+      .doc-title { font-size: 1.5rem; }
+    }
+    /* ── CARDS ──────────────────────────────── */
+    .module-card {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-left: 5px solid var(--addvalora-orange);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .module-card:not(.disabled-card):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(14,60,95,.12);
+    }
+    .module-card.disabled-card {
+      background: #fafafa;
+      border: 1px dashed #d1d5db;
+      border-left: 5px solid #9ca3af;
+      opacity: .8;
+      cursor: not-allowed;
+    }
+    .module-badge {
+      display: inline-block;
+      background: var(--addvalora-orange-light);
+      color: var(--addvalora-orange-dark);
+      font: 700 .72rem 'Inter', sans-serif;
+      text-transform: uppercase; letter-spacing: .05em;
+      padding: 4px 10px; border-radius: 4px; margin-bottom: .9rem;
+      align-self: flex-start;
+    }
+    .disabled-card .module-badge { background: #e5e7eb; color: #6b7280; }
+    .module-title {
+      font-size: 1rem; font-weight: 700;
+      color: var(--text-dark); line-height: 1.3; margin-bottom: .65rem;
+    }
+    .disabled-card .module-title { color: #6b7280; }
+    .module-desc {
+      font-size: .83rem; color: var(--text-gray); line-height: 1.55;
+      margin-bottom: 1.2rem; flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .btn-drive {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--addvalora-orange); color: #fff;
+      text-decoration: none; padding: .6rem 1.2rem; border-radius: 6px;
+      font: 600 .88rem 'Inter', sans-serif;
+      transition: background .2s; width: 100%; border: none; cursor: pointer;
+      margin-top: auto;
+    }
+    .btn-drive:hover { background: var(--addvalora-orange-dark); color: #fff; text-decoration: none; }
+    .status-text {
+      font-size: .88rem; font-weight: 600; color: #6b7280;
+      display: flex; align-items: center; margin-top: auto; font-style: italic;
+    }
+    .status-text svg { width: 16px; height: 16px; margin-right: 6px; fill: currentColor; }
+    /* ── FOOTER ─────────────────────────────── */
+    .doc-footer {
+      padding: 1.5rem 3.5rem; border-top: 1px solid #e5e7eb;
+      background: #f9fafb; text-align: center; font-size: .78rem; color: #9ca3af;
+    }
+    /* ── LANG ───────────────────────────────── */
+    /* lang-es inicialmente oculto via JS no DOMContentLoaded */
+  </style>
+</head>
+<body>
+<div class="document-page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="header-top">
+      <div class="header-left">
+        <a class="back-btn" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span class="lang-pt">Voltar</span>
+          <span class="lang-es" style="display:none">Volver</span>
+        </a>
+        <div class="logo-area">
+          <img src="addvalora_instituto.png" alt="Addvalora Instituto Logo">
+        </div>
+      </div>
+      <div class="lang-toggles">
+        <button class="lang-btn active" onclick="setLanguage('pt')" id="btn-pt">Português</button>
+        <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">Español</button>
+      </div>
+    </div>
+    <div class="area-badge">🏢 Área</div>
+    <div class="lang-pt">
+      <h1 class="doc-title">Property</h1>
+      <div class="doc-subtitle">Programa de Treinamento · Instituto Addvalora Brasil</div>
+    </div>
+    <div class="lang-es">
+      <h1 class="doc-title">Property</h1>
+      <div class="doc-subtitle">Programa de Entrenamiento · Instituto Addvalora Brasil</div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <main class="doc-body">
+    <section class="intro-section">
+      <div class="lang-pt">
+        <h2>Treinamento de Property</h2>
+        <p class="intro-text">
+          Este guia de treinamento fornece todos os recursos essenciais, documentação e procedimentos
+          operacionais para gestão de Property. Acesse os arquivos e vídeos de cada módulo clicando
+          nos botões abaixo.
+        </p>
+      </div>
+      <div class="lang-es">
+        <h2>Entrenamiento de Property</h2>
+        <p class="intro-text">
+          Esta guía de entrenamiento proporciona todos los recursos esenciales, documentación y
+          procedimientos operativos para gestión de Property. Acceda a los archivos y videos de cada
+          módulo haciendo clic en los botones de abajo.
+        </p>
+      </div>
+    </section>
+
+    <div class="modules-grid" id="modules-container">
+<article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 1</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Características e Técnicas de Vistoria</h3>
+              <p class="module-desc">
+                Organização, detalhismo, pontualidade, bom senso, sensibilidade, proatividade do regulador; Recepção e
+                análise do aviso, contato telefônico, preparação para vistoria.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1FqiZ6jzOfwaHwyDWRJf_S8ZDSP5ZL0_C?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Características y Técnicas de Inspección</h3>
+              <p class="module-desc">
+                Organización, detallismo, puntualidad, buen sentido, sensibilidad, proactividad del regulador; Recepción
+                y análisis del aviso, contacto telefónico, preparación para la inspección.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1gyc1_33t06B_k12oO_AiEn-pMPGQp0E5?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 2</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Da Estimativa de Prejuízos ao Relatório Preliminar</h3>
+              <p class="module-desc">
+                Elaboração do relatório fotográfico (redução de tamanho, sequência de fotos, destinatário); Elaboração
+                da solicitação de documentos (DRL) para SUSEP, causa do evento e prejuízos.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1_B-wc92deDWTPGOPFBtXPdPyEF5aGiWp?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">De la Estimación de Pérdidas al Informe Preliminar</h3>
+              <p class="module-desc">
+                Elaboración del informe fotográfico (reducción de tamaño, secuencia de fotos, destinatario); Elaboración
+                de la solicitud de documentos (DRL) para la SUSEP, causa del evento y pérdidas.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1zVF2KoCXsMgo45o1sTOVqKe2gFiHt8cL?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 3</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Dos Documentos ao Relatório Final</h3>
+              <p class="module-desc">
+                Importância da solicitação e análise de documentos; Cálculo de prejuízos e valores em risco (Prédio,
+                M.M.U.I., M.M.P.); Cálculo de indenização.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1DdOvPpnXXVdQ8OhWSxXprVvVsYt56t1q?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">De los Documentos al Informe Final</h3>
+              <p class="module-desc">
+                Importancia de la solicitud y análisis de documentos; Cálculo de pérdidas y valores en riesgo (Edificio,
+                M.M.U.I., M.M.P.); Cálculo de indemnización.
+              </p>
+              <a href="https://drive.google.com/drive/folders/14Gr3MjmwElGINq-g5ZIz5VMlDFl-XL90?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 4 (Disabled) -->
+          <article class="module-card disabled-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 4</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Módulo em Desenvolvimento</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Em breve
+              </div>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Módulo en Desarrollo</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Próximamente
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5a (PT Only - Disabled) -->
+          <article class="module-card disabled-card" data-pt="true" data-es="false">
+            <span class="module-badge">Módulo 5</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Compreensivo Empresarial / Seguro Multirriesgo Empresarial</h3>
+              <p class="module-desc">
+                Conceitos da SUSEP sobre planos de seguro compreensivo; Estrutura de apólices (frontispício,
+                especificação, condições gerais e adicionais); Riscos excluídos e bens não compreendidos.
+              </p>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Em breve
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5b (ES Only - Active) -->
+          <article class="module-card" data-pt="false" data-es="true">
+            <span class="module-badge">Módulo 5</span>
+            <div class="lang-es">
+              <h3 class="module-title">Seguro Multirriesgo Empresarial / Compreensivo Empresarial</h3>
+              <p class="module-desc">
+                Conceptos de la SUSEP sobre planes de seguro multirriesgo; Estructura de pólizas (carátula,
+                especificación, condiciones generales y adicionales); Riesgos excluidos y bienes no comprendidos.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1mKlpBuOkR_OGt54_dSEAnv0LxwKIH15y?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 6 (PT Only - Disabled) -->
+          <article class="module-card disabled-card" data-pt="true" data-es="false">
+            <span class="module-badge">Módulo 6</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Responsabilidade Civil Geral (RCG) / RCP</h3>
+              <p class="module-desc">
+                Histórico e perspectivas do RCG; Potencial da área; Produtos e apólices; Contrato de seguros (conceitos,
+                nulidade, excludente, perda de direitos); Atuação em RCP.
+              </p>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Em breve
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 7 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 7</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Riscos Nomeados e Operacionais</h3>
+              <p class="module-desc">
+                Definição de seguros de riscos nomeados e operacionais ("All Risks"); Foco em grandes empresas e energia
+                (tipos de energia, riscos em usinas hidrelétricas).
+              </p>
+              <a href="https://drive.google.com/drive/folders/15PZAJohAiexOa8x1s1Piq8FnPSLogSMM?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Riesgos Nombrados y Operacionales</h3>
+              <p class="module-desc">
+                Definición de seguros de riesgos nombrados y operacionales ("All Risks"); Enfoque en grandes empresas y
+                energía (tipos de energía, riesgos en centrales hidroeléctricas).
+              </p>
+              <a href="https://drive.google.com/drive/folders/1kC8afK87XXukNUsEBt5tqypHafYEmVdL?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 8 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 8</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Todos Riscos Construção / Riscos de Engenharia</h3>
+              <p class="module-desc">
+                Conceitos de apólice All Risks; Quem é o segurado; Prazo da apólice (período de construção e
+                manutenção); Objeto do seguro; Valor em risco.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1XsxpirD4gDuZsW_eQAummUVP2Ks3K-j-?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Todo Riesgo Construcción / Riesgos de Ingeniería</h3>
+              <p class="module-desc">
+                Conceptos de póliza All Risks; Quién es el antiguo asegurado; Plazo de la póliza (período de construcción y
+                mantenimiento); Objeto del seguro; Valor en riesgo.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1vRlj0Dq0PJeb0mEQ9-b6EHTZ3HUm3gnT?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 9 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 9</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Estimativas e Reservas</h3>
+              <p class="module-desc">
+                Definição de estimativa de prejuízos e reserva técnica; Diferenças entre os conceitos; Obrigatoriedade
+                de equivalência; Exemplos práticos de acidentes com danos em edifícios e M.M.U.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1JZ1bh9J_N1Ti9fuE_mT3Gyr6195VU_zQ?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Estimaciones y Reservas</h3>
+              <p class="module-desc">
+                Definición de estimación de pérdidas y reserva técnica; Diferencias entre los conceptos; Obligatoriedad
+                de equivalencia; Ejemplos prácticos de accidentes con daños en edificios y M.M.U.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1EAmXrfXeEQQLvuMZGjgYbPbNulPUINbj?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 10 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 10</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Riscos Operacionais de Autopistas / Rodovias</h3>
+              <p class="module-desc">
+                Conceitos sobre concessionárias de rodovias (privadas/públicas, acionistas, fiscalização, contratos);
+                Concessionárias atendidas; Corretores e seguradoras principais; Apólices (All Risks, bens cobertos,
+                franquias).
+              </p>
+              <a href="https://drive.google.com/drive/folders/1jZq5mmZoIVYfYy2yzNTv-SVMgj3uehIv?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Riesgos Operacionales de Autopistas / Carreteras</h3>
+              <p class="module-desc">
+                Conceptos sobre concesionarias de carreteras (privadas/públicas, accionistas, fiscalización, contratos);
+                Concesionarias atendidas; Corredores y aseguradoras principales; Pólizas (All Risks, bienes cubiertos,
+                franquicias).
+              </p>
+              <a href="https://drive.google.com/drive/folders/1DjuX4V59tPADq1ajSPrW-IqVZAtNpYlG?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+
+          <!-- CARD 11 (Disabled) -->
+          <article class="module-card disabled-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 11</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Módulo em Desenvolvimento</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Em breve
+              </div>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Módulo en Desarrollo</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Próximamente
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 12 (Disabled) -->
+          <article class="module-card disabled-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 12</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Módulo em Desenvolvimento</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Em breve
+              </div>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Módulo en Desarrollo</h3>
+              <div class="status-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+                </svg>
+                Próximamente
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 13 -->
+          <article class="module-card" data-pt="true" data-es="true">
+            <span class="module-badge">Módulo 13</span>
+            <div class="lang-pt">
+              <h3 class="module-title">Incêndio Property (O Seguro e o Sinistro)</h3>
+              <p class="module-desc">
+                O que é seguro de incêndio Property; Vínculo com outras coberturas (lucros cessantes); Evolução do risco
+                de incêndio em seguros patrimoniais (IRB, Susep, Multirriscos); Definição de incêndio, fogo e chama
+                residual.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1wvdrlOdZYiBIubMeAuVbxdpFa2wl48Rg?usp=drive_link" class="btn-drive" target="_blank">📁 Acessar Pasta no Drive</a>
+            </div>
+            <div class="lang-es">
+              <h3 class="module-title">Incendio Property (El Seguro y el Siniestro)</h3>
+              <p class="module-desc">
+                Qué es el seguro de incendio Property; Vínculo con otras coberturas (lucros cessantes); Evolución del
+                riesgo de incendio en seguros patrimoniales (IRB, Susep, Multiriesgos); Definición de incendio, fuego y
+                llama residual.
+              </p>
+              <a href="https://drive.google.com/drive/folders/1TSzdJmnPjjYer5OEJDTT3JP88WrDbLw_?usp=drive_link" class="btn-drive" target="_blank">📁 Acceder a la Carpeta</a>
+            </div>
+          </article>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+    <footer class="doc-footer">
+      <div class="lang-pt">© 2026 Instituto Addvalora Brasil · Property · Desenvolvido pelo NIE</div>
+      <div class="lang-es">© 2026 Instituto Addvalora Brasil · Property · Desarrollado por el NIE</div>
+    </footer>
+
+</div>
+<script>
+  function setLanguage(lang) {
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+    document.querySelectorAll('.lang-pt').forEach(el => {
+      el.style.display = lang === 'pt' ? 'block' : 'none';
+    });
+    document.querySelectorAll('.lang-es').forEach(el => {
+      el.style.display = lang === 'es' ? 'block' : 'none';
+    });
+
+    document.querySelectorAll('.module-card').forEach(card => {
+      const available = card.getAttribute('data-' + lang) === 'true';
+      card.style.display = available ? 'flex' : 'none';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', () => setLanguage('pt'));
+</script>
+</body>
+</html>
